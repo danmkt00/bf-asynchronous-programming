@@ -8,7 +8,8 @@ const { log, error } = labeledLogger();
 // --- declare some callbacks ---
 
 const createSummary = (user) => {
-    // write me!
+  // write me!
+  return `name: '${user.name},'\ncity:'${user.address.city},'\ncompanyName: '${user.company.name}'`;
 };
 
 const handleError = (err) => error(err);
@@ -21,7 +22,9 @@ log('fetching and processing user 5');
       city: 'Roscoeview',
       companyName: 'Keebler LLC'
     } */
-__;
+fetchUserById(5)
+  .then((user) => log(createSummary(user)))
+  .catch(handleError);
 
 log('fetching and processing user 1');
 /*  {
@@ -29,7 +32,9 @@ log('fetching and processing user 1');
       city: 'Gwenborough',
       companyName: 'Romaguera-Crona',
     } */
-__;
+fetchUserById(1)
+  .then((user) => log(createSummary(user)))
+  .catch(handleError);
 
 log('fetching and processing user 10');
 /*  {
@@ -37,10 +42,14 @@ log('fetching and processing user 10');
       city: 'Lebsackbury',
       companyName: 'Hoeger LLC',
     } */
-__;
+fetchUserById(10)
+  .then((user) => log(createSummary(user)))
+  .catch(handleError);
 
 log('fetching and processing user -1');
 // 404
-__;
+fetchUserById(-1)
+  .then((user) => log(createSummary(user)))
+  .catch(handleError);
 
 log('= = = =  the call stack is empty  = = = =');
